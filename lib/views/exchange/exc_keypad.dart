@@ -35,7 +35,7 @@ class _ExcKeypadState extends State<ExcKeypad> {
         leftButtonFn: () {
           print('left button clicked');
         },
-        leftIcon: Icon(
+        leftIcon: const Icon(
           Icons.check,
           color: Colors.grey,
         ),

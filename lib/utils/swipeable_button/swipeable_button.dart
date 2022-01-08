@@ -3,8 +3,7 @@ import 'package:dribble_crypto/utils/swipeable_button/swipeable_widget.dart';
 import 'package:flutter/material.dart';
 
 class SwipeableButton extends StatelessWidget {
-  const SwipeableButton({Key? key, required this.text, required this.onSwipeCallback}) : super(key: key);
-  final String text;
+  const SwipeableButton({Key? key, required this.onSwipeCallback}) : super(key: key);
 
   /// The callback invoked when the button is swiped.
   final VoidCallback onSwipeCallback;
@@ -18,6 +17,9 @@ class SwipeableButton extends StatelessWidget {
         children: <Widget>[
           Container(
             height: 60.0,
+            width: double.infinity,
+            padding: const EdgeInsets.only(top: 20.0),
+            child: const Text('slide to buy >', textAlign: TextAlign.center, style: TextStyle(fontSize: 20.0, color: Colors.white),),
             decoration: BoxDecoration(
                 color: Colors.grey[300],
                 borderRadius: BorderRadius.circular(15.0)
@@ -26,14 +28,14 @@ class SwipeableButton extends StatelessWidget {
           SwipeableWidget(
             height: 60.0,
             child: Container(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-                child: _buildContent(),
+              child: const Padding(
+                padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
+                child: Icon(Icons.swipe, color: Colors.white,),
               ),
               height: 80.0,
               decoration: BoxDecoration(
                   color: Colors.green,
-                  borderRadius: BorderRadius.circular(4.0)
+                  borderRadius: BorderRadius.circular(15.0)
               ),
             ),
             onSwipeCallback: onSwipeCallback,
@@ -42,28 +44,4 @@ class SwipeableButton extends StatelessWidget {
       ),
     );
   }
-
-  Widget _buildText() {
-    final textStyle = const TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500, color: Colors.white);
-    return Flexible(
-      flex: 2,
-      child: Text(
-        text.toUpperCase(),
-        style: textStyle,
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
-      ),
-    );
-  }
-
-  Widget _buildContent() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        _buildText(),
-      ],
-    );
-  }
-
 }

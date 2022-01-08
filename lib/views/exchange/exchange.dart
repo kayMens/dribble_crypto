@@ -35,7 +35,7 @@ class _ExchangeState extends State<Exchange>
               Expanded(child: Container()),
               TabBar(
                 labelColor: Colors.grey[800],
-                indicatorPadding: EdgeInsets.only(top: 20.0),
+                indicatorPadding: const EdgeInsets.only(top: 20.0),
                 labelStyle: const TextStyle(fontSize: 22.0,),
                 controller: _tabController,
                 indicator:
@@ -53,9 +53,10 @@ class _ExchangeState extends State<Exchange>
       ),
       body: TabBarView(
         controller: _tabController,
-        children: [
-          const BuyTabView(),
-          const SellTabView(),
+        physics: const NeverScrollableScrollPhysics(),
+        children: const [
+          BuyTabView(),
+          SellTabView(),
         ],
       ),
     );
@@ -72,10 +73,10 @@ class BuyTabView extends StatelessWidget {
       child: Column(
         children: [
           ExcBank(),
-          ExcCard(),
-          ExcPrice(),
-          Expanded(child: ExcKeypad()),
-          SwipeableButton(text: 'Some', onSwipeCallback: () {})
+          const ExcCard(),
+          const ExcPrice(),
+          const Expanded(child: ExcKeypad()),
+          SwipeableButton(onSwipeCallback: () {})
         ],
       ),
     );

@@ -12,15 +12,14 @@ class SwipeableWidget extends StatefulWidget {
   /// The decimal percentage of swiping in order for the callbacks to get called, defaults to 0.75 (75%) of the total width of the children.
   final double swipePercentageNeeded;
 
-  SwipeableWidget({
+  const SwipeableWidget({
     Key? key,
     required this.child,
     required this.height,
     required this.onSwipeCallback,
     this.swipePercentageNeeded = 0.75
   }): assert(
-  child != null &&
-      onSwipeCallback != null &&
+  onSwipeCallback != null &&
       swipePercentageNeeded <= 1.0
   ), super(key: key);
 
@@ -84,16 +83,17 @@ class _SwipeableWidgetState extends State<SwipeableWidget> with SingleTickerProv
           if (delta > deltaNeededToBeSwiped) {
             // if it's enough, then animate to hide them
             _controller.animateTo(0.0,
-                duration: Duration(milliseconds: 300), curve: Curves.fastOutSlowIn);
+                duration: const Duration(milliseconds: 300), curve: Curves.fastOutSlowIn);
             widget.onSwipeCallback();
           } else {
             // if it's not enough, then animate it back to its full width
             _controller.animateTo(1.0,
-                duration: Duration(milliseconds: 300), curve: Curves.fastOutSlowIn);
+                duration: const Duration(milliseconds: 300), curve: Curves.fastOutSlowIn);
           }
         },
-        child: Container(
+        child: SizedBox(
           height: widget.height,
+          width: 60,
           child: Align(
             alignment: Alignment.centerRight,
             child: FractionallySizedBox(
